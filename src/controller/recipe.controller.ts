@@ -44,9 +44,19 @@ const updateSingleRecipe = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const deleteRecipe = catchAsync(async (req: Request, res: Response) => {
+  const result = await recipeServices.deleteRecipeFromDb(req.params.id);
+  sendResponse(res, {
+    statusCode: 200,
+    message: "Recipe deleted successfully.",
+    data: result,
+  });
+});
+
 export const recipeControllers = {
   createRecipe,
   getAllRecipe,
   getSingleRecipe,
   updateSingleRecipe,
+  deleteRecipe,
 };

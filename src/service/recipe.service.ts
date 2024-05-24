@@ -25,9 +25,15 @@ const updateSingleRecipeFromDb = async (recipeId: string, payload: any) => {
   return result;
 };
 
+const deleteRecipeFromDb = async (recipeId: string) => {
+  const result = await recipe.deleteOne({ _id: new ObjectId(recipeId) });
+  return result;
+};
+
 export const recipeServices = {
   createRecipeIntoDb,
   getAllRecipesFromDb,
   getSingleRecipeFromDb,
   updateSingleRecipeFromDb,
+  deleteRecipeFromDb,
 };
