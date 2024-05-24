@@ -8,14 +8,15 @@ const client = new MongoClient(config.database_url, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
+const database = client.db("yummyFy");
+
+export const recipe = database.collection("recipe");
 
 async function server() {
   try {
     // Connect to MongoDB
     await client.connect();
     console.log("Connected to MongoDB");
-
-    const db = client.db("yummyFy");
 
     app.listen(config.port, () => {
       console.log(`Example app listening on port ${config.port}`);
